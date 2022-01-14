@@ -8,10 +8,12 @@
 #include <string>
 
 class Lox {
-public:
-    void runFile(std::string path);
-    void runPrompt();
+    static bool hadError;
 
+    static void run(std::string source);
+public:
+    static void runFile(const std::string& path);
+    static void runPrompt();
 };
 
 

@@ -3,11 +3,23 @@
 //
 
 #include "Lox.h"
+#include <iostream>
 #include <fstream>
 #include <memory>
-#include <iostream>
 
-void Lox::runFile(std::string path) {
+
+bool Lox::hadError = false;
+
+void Lox::run(std::string source) {
+    std::cout << source << std::endl;
+
+    // auto tokens = scanner->scanTokens();
+    // for (auto token : tokens) {
+    //      std::cout << token << std::endl;
+    // }
+}
+
+void Lox::runFile(const std::string& path) {
     std::ifstream ifs (path);
 
     if (!ifs)
@@ -17,10 +29,11 @@ void Lox::runFile(std::string path) {
     ssize_t size = ifs.tellg();
     ifs.seekg(0, std::ios::beg);
 
-    auto bytes = std::make_unique<char[]>(64);
+    auto bytes = std::make_unique<char[]>(size);
     ifs.read(bytes.get(), size);
+    ifs.close();
 
-//    run(bytes);
+    run(bytes.get());
 }
 
 void Lox::runPrompt() {
@@ -28,6 +41,9 @@ void Lox::runPrompt() {
         std::cout << "> ";
         std::string line;
 
-        if (line == std::string::npos) break;
+        if (getline(std::cin, line).eof())  break;
+
+        run(line);
+        hadError = false;
     }
 }

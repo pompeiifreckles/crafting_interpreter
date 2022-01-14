@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Lox.h"
 
 int main(int argc, char *argv[])
 try {
@@ -6,9 +7,9 @@ try {
         std::cout << "Usage: clox [script]" << std::endl;
         exit(64);
     } else if (argc == 2) {
-//        runFile(argv[1]);
+        Lox::runFile(argv[1]);
     } else {
-//        runPrompt();
+        Lox::runPrompt();
     }
 }
 catch (std::exception& e) {

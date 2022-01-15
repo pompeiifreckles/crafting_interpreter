@@ -3,6 +3,7 @@
 //
 
 #include "Lox.h"
+#include "Scanner.h"
 #include <iostream>
 #include <fstream>
 #include <memory>
@@ -10,13 +11,15 @@
 
 bool Lox::hadError = false;
 
-void Lox::run(std::string source) {
-    std::cout << source << std::endl;
+void Lox::run(const std::string& source) {
+//    std::cout << source << std::endl;
 
-    // auto tokens = scanner->scanTokens();
-    // for (auto token : tokens) {
-    //      std::cout << token << std::endl;
-    // }
+    std::unique_ptr<Scanner> scanner = std::make_unique<Scanner>(source);
+    auto tokens = scanner->scanTokens();
+
+    for (auto& token : tokens) {
+      std::cout << token->toString() << std::endl;
+    }
 }
 
 void Lox::runFile(const std::string& path) {
@@ -34,6 +37,7 @@ void Lox::runFile(const std::string& path) {
     ifs.close();
 
     run(bytes.get());
+    if (hadError) exit(65);
 }
 
 void Lox::runPrompt() {
@@ -46,4 +50,14 @@ void Lox::runPrompt() {
         run(line);
         hadError = false;
     }
+}
+
+void Lox::error(int line, const std::string message) {
+    report(line, "", message);
+}
+
+void Lox::report(int line, std::string where, std::string message) {
+    std::cerr << "[line " + std::to_string(line) + "] Error" + where +
+    ": " + message;
+    hadError = true;
 }

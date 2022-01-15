@@ -84,6 +84,24 @@ build CMakeFiles/Crafting_Interpreter.dir/Lox.cpp.o: CXX_COMPILER__Crafting_Inte
   OBJECT_DIR = CMakeFiles/Crafting_Interpreter.dir
   OBJECT_FILE_DIR = CMakeFiles/Crafting_Interpreter.dir
 
+build CMakeFiles/Crafting_Interpreter.dir/Token.cpp.o: CXX_COMPILER__Crafting_Interpreter_Debug /home/slimsi/CLionProjects/Crafting_Interpreter/Token.cpp || cmake_object_order_depends_target_Crafting_Interpreter
+  DEP_FILE = CMakeFiles/Crafting_Interpreter.dir/Token.cpp.o.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles/Crafting_Interpreter.dir
+  OBJECT_FILE_DIR = CMakeFiles/Crafting_Interpreter.dir
+
+build CMakeFiles/Crafting_Interpreter.dir/Scanner.cpp.o: CXX_COMPILER__Crafting_Interpreter_Debug /home/slimsi/CLionProjects/Crafting_Interpreter/Scanner.cpp || cmake_object_order_depends_target_Crafting_Interpreter
+  DEP_FILE = CMakeFiles/Crafting_Interpreter.dir/Scanner.cpp.o.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles/Crafting_Interpreter.dir
+  OBJECT_FILE_DIR = CMakeFiles/Crafting_Interpreter.dir
+
+build CMakeFiles/Crafting_Interpreter.dir/TokenType.cpp.o: CXX_COMPILER__Crafting_Interpreter_Debug /home/slimsi/CLionProjects/Crafting_Interpreter/TokenType.cpp || cmake_object_order_depends_target_Crafting_Interpreter
+  DEP_FILE = CMakeFiles/Crafting_Interpreter.dir/TokenType.cpp.o.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles/Crafting_Interpreter.dir
+  OBJECT_FILE_DIR = CMakeFiles/Crafting_Interpreter.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Crafting_Interpreter
@@ -92,7 +110,7 @@ build CMakeFiles/Crafting_Interpreter.dir/Lox.cpp.o: CXX_COMPILER__Crafting_Inte
 #############################################
 # Link the executable Crafting_Interpreter
 
-build Crafting_Interpreter: CXX_EXECUTABLE_LINKER__Crafting_Interpreter_Debug CMakeFiles/Crafting_Interpreter.dir/main.cpp.o CMakeFiles/Crafting_Interpreter.dir/Lox.cpp.o
+build Crafting_Interpreter: CXX_EXECUTABLE_LINKER__Crafting_Interpreter_Debug CMakeFiles/Crafting_Interpreter.dir/main.cpp.o CMakeFiles/Crafting_Interpreter.dir/Lox.cpp.o CMakeFiles/Crafting_Interpreter.dir/Token.cpp.o CMakeFiles/Crafting_Interpreter.dir/Scanner.cpp.o CMakeFiles/Crafting_Interpreter.dir/TokenType.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Crafting_Interpreter.dir
   POST_BUILD = :

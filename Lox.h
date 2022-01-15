@@ -10,10 +10,12 @@
 class Lox {
     static bool hadError;
 
-    static void run(std::string source);
+    static void run(const std::string& source);
+    static void report(int line, std::string where, std::string message);
 public:
     static void runFile(const std::string& path);
     static void runPrompt();
+    static void error(int line, std::string message);
 };
 
 

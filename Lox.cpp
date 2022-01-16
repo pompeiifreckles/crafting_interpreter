@@ -58,6 +58,6 @@ void Lox::error(int line, const std::string message) {
 
 void Lox::report(int line, std::string where, std::string message) {
     std::cerr << "[line " + std::to_string(line) + "] Error" + where +
-    ": " + message;
+    ": " + message << std::endl;
     hadError = true;
 }

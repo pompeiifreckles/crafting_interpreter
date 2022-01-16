@@ -50,7 +50,13 @@ void Scanner::scanToken() {
         case '-': addToken(TokenType::MINUS); break;
         case '+': addToken(TokenType::PLUS); break;
         case ';': addToken(TokenType::SEMICOLON); break;
-        case '*': addToken(TokenType::STAR); break;
+        case '*':
+            if (match('/')) {
+                Lox::error(line, "Unterminated comment.");
+                break;
+            }
+            addToken(TokenType::STAR);
+            break;
         case '!':
             addToken(match('=') ? TokenType::BANG_EQUAL : TokenType::BANG);
             break;
@@ -67,6 +73,8 @@ void Scanner::scanToken() {
             if (match('/')) {
                 // A comment goes until the end of the line.
                 while (peek() != '\n' && !isAtEnd()) advance();
+            } else if (match('*')) {
+                comment();
             } else {
                 addToken(TokenType::SLASH);
             }
@@ -82,11 +90,11 @@ void Scanner::scanToken() {
             break;
         case '"': Scanner::string(); break;
 
-        case 'o':
-            if (match('r')) {
-                addToken(TokenType::OR);
-            }
-            break;
+//        case 'o':                         // not Maximal Munch, "orchid" -> "or"(OR) + "chid"(IDENTIFIER)
+//            if (match('r')) {
+//                addToken(TokenType::OR);
+//            }
+//            break;
 
         default:
             if (isDigit(c)) {
@@ -179,5 +187,26 @@ void Scanner::identifier() {
     }
 
     addToken(type);
+}
+
+void Scanner::comment() {
+    int count {1};
+
+    while (count != 0 && !isAtEnd()) {
+        if (peek() == '\n') {
+            line += 1;
+        } else if (peek() == '*' && peekNext() == '/') {
+            count -= 1;
+            advance();
+        } else if (peek() == '/' && peekNext() == '*') {
+            count += 1;
+            advance();
+        }
+        advance();
+    }
+
+    if (count != 0 && isAtEnd()) {
+        Lox::error(line, "Unterminated comment.");
+    }
 }
 

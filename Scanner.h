@@ -33,6 +33,7 @@ class Scanner {
     void number();
     char peekNext();
     void identifier();
+    void comment();
 
 public:
     Scanner(std::string source) : source(std::move(source)) {}

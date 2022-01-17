@@ -1,4 +1,0 @@
-/home/slimsi/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/slimsi/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/ninja/linux/ninja -G Ninja /home/slimsi/CLionProjects/Crafting_Interpreter
--- Configuring done
--- Generating done
--- Build files have been written to: /home/slimsi/CLionProjects/Crafting_Interpreter/cmake-build-debug

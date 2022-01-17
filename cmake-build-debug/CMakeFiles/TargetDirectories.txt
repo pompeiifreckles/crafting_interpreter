@@ -1,3 +1,0 @@
-/home/slimsi/CLionProjects/Crafting_Interpreter/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/slimsi/CLionProjects/Crafting_Interpreter/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/slimsi/CLionProjects/Crafting_Interpreter/cmake-build-debug/CMakeFiles/Crafting_Interpreter.dir

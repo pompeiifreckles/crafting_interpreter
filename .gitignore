@@ -1,2 +1,5 @@
 cmake-build-debug
+compile_flags.txt
+build
+.vscode
 .idea

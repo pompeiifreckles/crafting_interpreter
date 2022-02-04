@@ -166,7 +166,7 @@ void Scanner::number() {
         while (isDigit(peek())) advance();
     }
 
-    addToken(TokenType::NUMBER, new double(std::stod(source.substr(start, current - start))));
+    addToken(TokenType::NUMBER, std::stod(source.substr(start, current - start)));
 }
 
 char Scanner::peekNext() {

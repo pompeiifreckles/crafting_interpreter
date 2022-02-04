@@ -10,12 +10,12 @@
 #include <any>
 
 class Token {
+public:
     const TokenType type;
     const std::string lexeme;
     std::any literal;
     const int line;
 
-public:
     Token(TokenType type, std::string lexeme, std::any literal, int line);
     std::string toString();
 };

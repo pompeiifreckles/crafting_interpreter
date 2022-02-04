@@ -34,7 +34,7 @@ class AstPrinter : public Visitor<string>, public enable_shared_from_this<AstPri
 	}
 
 	string visitLiteralExpr(shared_ptr<Literal<string>> expr) override {
-		if (expr->value == nullptr) return "nil";
+		if (expr->value->type() == typeid(nullptr) || expr->value->type() == typeid(NULL)) return "nil";
 		if (expr->value->type() == typeid(int)) {
 			return to_string(any_cast<int>(*expr->value));
 		} else if (expr->value->type() == typeid(double)) {

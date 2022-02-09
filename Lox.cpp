@@ -4,6 +4,8 @@
 
 #include "Lox.h"
 #include "Scanner.h"
+#include "Parser.h"
+#include "AstPrinter.h"
 #include <iostream>
 #include <fstream>
 #include <memory>
@@ -16,10 +18,19 @@ void Lox::run(const std::string& source) {
 
     std::unique_ptr<Scanner> scanner = std::make_unique<Scanner>(source);
     auto tokens = scanner->scanTokens();
+	
+	// Parser<std::string> parser(tokens);
+	auto parser = std::make_shared<Parser<std::string>>(tokens);
+	shared_ptr<Expr<std::string>> expression = parser->parse();
 
-    for (auto& token : tokens) {
-      std::cout << token->toString() << std::endl;
-    }
+	if (hadError) return;
+
+	auto printer = make_shared<AstPrinter>();
+	std::cout << printer->print(expression) << std::endl;
+
+    // for (auto& token : tokens) {
+      // std::cout << token->toString() << std::endl;
+    // }
 }
 
 void Lox::runFile(const std::string& path) {
@@ -54,6 +65,14 @@ void Lox::runPrompt() {
 
 void Lox::error(int line, const std::string message) {
     report(line, "", message);
+}
+
+void Lox::error(std::shared_ptr<Token> token, std::string message) {
+	if (token->type == TokenType::_EOF) {
+		report(token->line, " at end", message);
+	} else {
+		report(token->line, " at '" + token->lexeme + "'", message);
+	}
 }
 
 void Lox::report(int line, std::string where, std::string message) {

@@ -1,3 +1,6 @@
+#ifndef CRAFTING_INTERPRETER_ASTPRINTER_H
+#define CRAFTING_INTERPRETER_ASTPRINTER_H
+
 #include <iostream>
 #include <memory>
 #include <initializer_list>
@@ -53,15 +56,4 @@ class AstPrinter : public Visitor<string>, public enable_shared_from_this<AstPri
 	
 };
 
-int main() {
-	shared_ptr<Expr<string>> expression = make_shared<Binary<string>>(
-			make_shared<Unary<string>>(
-				make_shared<Token>(TokenType::MINUS, "-", nullptr, 1),
-				make_shared<Literal<string>>(make_shared<any>(123))
-				),
-			make_shared<Token>(TokenType::STAR, "*", nullptr, 1),
-			make_shared<Grouping<string>>( make_shared<Literal<string>>(make_shared<any>(45.67)) )
-			);
-
-	cout << make_shared<AstPrinter>()->print(expression) << endl;
-}
+#endif
